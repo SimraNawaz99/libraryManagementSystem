@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Futuristic Obsidian & Amber Palette - Refined */
+  --primary: #f59e0b;
+  /* Amber 500 */
+  --primary-glow: rgba(245, 158, 11, 0.35);
+  --bg-page: #020617;
+  /* Deepest Navy */
+  --bg-gradient: radial-gradient(circle at top right, #0f172a, #020617);
+  --bg-card: rgba(15, 23, 42, 0.8);
+  /* Slate 900 with translucency */
+  --bg-surface: #1e293b;
+  /* Slate 800 */
+  --text-main: #f8fafc;
+  /* Slate 50 */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+  --border-tech: rgba(30, 41, 59, 0.5);
+  /* Semi-transparent Slate 800 */
+  --border-active: #f59e0b;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --radius: 6px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background: var(--bg-page);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-tech {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Effect */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-tech);
+  padding: 1.25rem 0;
+}
+
+.navbar-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  color: var(--primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary) !important;
+  text-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* Polished Cards */
+.tech-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-tech);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+  transition: var(--transition);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+}
+
+.tech-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.7), 0 0 15px var(--primary-glow);
+}
+
+
+.card-title {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.card-value {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+}
+
+/* Stacked Box List Styles */
+.stacked-box-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stacked-box {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-tech);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stacked-box:hover {
+  border-color: var(--primary);
+  transform: translateX(5px);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.stacked-box::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.stacked-box:hover::before {
+  opacity: 1;
+}
+
+.stacked-box-col {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.stacked-box-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-tech);
+  border-radius: 4px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.stacked-box-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Dashboard Action Strip */
+.action-strip {
+  display: flex;
+  gap: 1rem;
+  background: var(--bg-card);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-tech);
+  margin-top: 2rem;
+}
+
+.action-btn-boxed {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-tech);
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.action-btn-boxed:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn-boxed i {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Buttons Refined */
+.btn-primary {
+  background: var(--primary);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: #fbbf24;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px var(--primary-glow);
+  color: #000;
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 4px;
+  background: transparent;
+  padding: 0.7rem 1.7rem;
+}
+
+.btn-outline-primary:hover {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #fbbf24;
+  color: #fbbf24;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+}
+
+/* Forms Refined */
+.form-control {
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid var(--border-tech);
+  color: var(--text-main);
+  border-radius: 4px;
+  padding: 0.85rem 1.25rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  background: rgba(2, 6, 23, 0.8);
+  border-color: var(--primary);
+  color: var(--text-main);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* Console Style */
+.console-header {
+  border-left: 3px solid var(--primary);
+  padding-left: 1.5rem;
+}
+
+/* Utilities */
+.text-glow {
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.animate-pulse-subtle {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

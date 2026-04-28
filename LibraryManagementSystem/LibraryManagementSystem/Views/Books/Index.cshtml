@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+@{
+    ViewData["Title"] = "Books Inventory";
+}
+
+<div class="row mb-5 align-items-end">
+    <div class="col-md-8">
+        <h1 class="display-6 fw-bold text-white mb-2">Books Inventory</h1>
+        <p class="text-muted opacity-75">Manage and track all library books</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus me-2"></i>Add New Book
+        </a>
+    </div>
+</div>
+<div class="stacked-box-list">
+    @foreach (var item in Model)
+    {
+        <div class="stacked-box">
+            <div class="stacked-box-icon me-3">
+                <i class="fas fa-book"></i>
+            </div>
+            
+            <div class="stacked-box-col">
+                <div class="text-white fw-bold">@item.Title</div>
+                <small class="text-muted">by @item.Author</small>
+            </div>
+
+            <div class="stacked-box-col d-none d-md-block">
+                <span class="badge-tech badge-primary">@item.Category</span>
+            </div>
+
+            <div class="stacked-box-col d-none d-lg-block">
+                <div class="text-muted small font-monospace">ISBN: @item.Isbn</div>
+            </div>
+
+            <div class="stacked-box-col text-center">
+                <div class="text-muted small mb-1">Stock</div>
+                @if (item.Quantity > 0)
+                {
+                    <span class="text-primary fw-bold font-tech">@item.Quantity.ToString("D2")</span>
+                }
+                else
+                {
+                    <span class="text-danger small">OUT</span>
+                }
+            </div>
+
+            <div class="stacked-box-actions">
+                <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-outline-light btn-sm border-0" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-outline-light btn-sm border-0" title="Details">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-outline-danger btn-sm border-0" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <i class="fas fa-book-open fa-4x text-muted mb-3"></i>
+        <h4 class="text-muted">No books found in the inventory</h4>
+        <p class="text-muted small">Click "Add New Book" to start your collection.</p>
+    </div>
+}

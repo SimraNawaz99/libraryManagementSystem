@@ -1,0 +1,78 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecord
+
+@{
+    ViewData["Title"] = "Update Loan Status";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="d-flex align-items-center mb-5 border-bottom border-tech pb-4">
+            <a asp-action="Index" class="btn btn-outline-primary border-0 me-3">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h2 class="text-white mb-0">Edit Loan Status</h2>
+        </div>
+
+        <div class="tech-card border-top border-primary border-5">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                <input type="hidden" asp-for="BorrowId" />
+
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="form-group">
+                            <label asp-for="BookId" class="form-label text-accent fw-bold"><i class="fas fa-book me-1"></i> Book Information</label>
+                            <select asp-for="BookId" class="form-control" asp-items="ViewBag.BookId"></select>
+                            <span asp-validation-for="BookId" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <div class="form-group">
+                            <label asp-for="UserId" class="form-label text-accent fw-bold"><i class="fas fa-user me-1"></i> Borrower Information</label>
+                            <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                            <span asp-validation-for="UserId" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="BorrowDate" class="form-label text-accent fw-bold"><i class="far fa-calendar-alt me-1"></i> Issue Date</label>
+                            <input asp-for="BorrowDate" type="date" class="form-control" required />
+                            <span asp-validation-for="BorrowDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="ReturnDate" class="form-label text-accent fw-bold"><i class="far fa-calendar-check me-1"></i> Due/Return Date</label>
+                            <input asp-for="ReturnDate" type="date" class="form-control" required />
+                            <span asp-validation-for="ReturnDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <div class="form-check form-switch tech-check">
+                            <input asp-for="IsReturned" class="form-check-input" type="checkbox" id="returnSwitch">
+                            <label class="form-check-label text-white fw-bold ms-2" for="returnSwitch">
+                                Mark as Returned
+                            </label>
+                        </div>
+                        <span asp-validation-for="IsReturned" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 pt-4 border-top border-tech mt-4">
+                    <button type="submit" class="btn btn-primary flex-grow-1">
+                        Save Changes
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-primary px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

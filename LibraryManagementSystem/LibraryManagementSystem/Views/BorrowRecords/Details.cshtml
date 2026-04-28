@@ -1,0 +1,101 @@
+﻿@model LibraryManagementSystem.Models.BorrowRecord
+
+@{
+    ViewData["Title"] = "Loan Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-4">
+        <div class="d-flex align-items-center mb-5 border-bottom border-tech pb-4">
+            <a asp-action="Index" class="btn btn-outline-primary border-0 me-3">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h2 class="text-white mb-0">Loan Statistics</h2>
+        </div>
+
+        <div class="tech-card border-top border-primary border-5">
+            <div class="row g-4">
+                <div class="col-md-6 border-end border-tech">
+                    <h5 class="text-primary mb-4 fw-bold pb-2 border-bottom border-tech">
+                        <i class="fas fa-book me-2"></i>Book Details
+                    </h5>
+                    <div class="mb-3">
+                        <label>Title</label>
+                        <span class="text-white fw-bold fs-5 d-block">@Model.Book?.Title</span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Author</label>
+                        <span class="text-muted d-block">@Model.Book?.Author</span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Book ID</label>
+                        <span class="badge-tech">#@Model.BookId</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h5 class="text-primary mb-4 fw-bold pb-2 border-bottom border-tech">
+                        <i class="fas fa-user me-2"></i>Borrower Information
+                    </h5>
+                    <div class="mb-3">
+                        <label>Full Name</label>
+                        <span class="text-white fw-bold fs-5 d-block">@Model.User?.FullName</span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Username</label>
+                        <span class="text-muted d-block">@@@Model.User?.Username</span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email Address</label>
+                        <span class="text-white"><i class="fas fa-envelope text-primary me-2"></i>@Model.User?.Email</span>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="bg-surface p-4 border border-tech shadow-lg">
+                        <h5 class="text-primary mb-4 fw-bold">
+                            <i class="fas fa-calendar-alt me-2"></i>Loan Timestamps
+                        </h5>
+                        <div class="row text-center g-3">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-card border border-tech">
+                                    <label>Issue Date</label>
+                                    <span class="text-white fw-bold d-block">@Model.BorrowDate.ToString("MMM dd, yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-card border border-tech">
+                                    <label>Return Date</label>
+                                    <span class="text-white fw-bold d-block">@(Model.ReturnDate?.ToString("MMM dd, yyyy") ?? "Not Set")</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-card border @(Model.IsReturned == true ? "border-success" : "border-warning")">
+                                    <label>Loan Status</label>
+                                    @if (Model.IsReturned == true)
+                                    {
+                                        <span class="text-success fw-bold d-block"><i class="fas fa-check-circle me-1"></i>Returned</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning fw-bold d-block"><i class="fas fa-clock me-1"></i>Active Loan</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-3 mt-5 pt-3 border-top border-tech">
+                <a asp-action="Edit" asp-route-id="@Model.BorrowId" class="btn btn-primary flex-grow-1">
+                    Edit Loan Status
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.BorrowId" class="btn btn-outline-danger px-4">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

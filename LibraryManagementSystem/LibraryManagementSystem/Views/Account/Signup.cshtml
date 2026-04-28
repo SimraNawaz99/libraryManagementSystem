@@ -1,0 +1,51 @@
+@model LibraryManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Signup";
+    Layout = "_Layout";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="text-center mb-5">
+            <div class="bg-card p-4 d-inline-block border border-primary shadow-lg mb-4">
+                <i class="fas fa-user-plus fa-3x text-primary"></i>
+            </div>
+            <h2 class="text-white">Create Account</h2>
+            <p class="text-muted small">Enter your details to register as a member</p>
+        </div>
+
+        <div class="tech-card border-top border-primary border-5">
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger border-0 rounded-0 shadow-sm mb-4">
+                    <i class="fas fa-exclamation-circle me-2"></i>@ViewBag.Error
+                </div>
+            }
+
+            <form asp-action="Signup" method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="Username" class="text-primary small fw-bold">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="Choose a username" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="text-primary small fw-bold">Email Address</label>
+                    <input asp-for="Email" class="form-control" placeholder="email@example.com" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="FullName" class="text-primary small fw-bold">Full Name</label>
+                    <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
+                </div>
+                <div class="form-group mb-4">
+                    <label asp-for="Password" class="text-primary small fw-bold">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Create a secure password" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+
+            <div class="text-center mt-5 pt-3 border-top border-tech">
+                <p class="text-muted small">Already have an account? <a asp-action="Login" class="text-primary fw-bold ms-1">Login Here</a></p>
+            </div>
+        </div>
+    </div>
+</div>

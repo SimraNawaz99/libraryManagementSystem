@@ -1,0 +1,53 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.User>
+
+@{
+    ViewData["Title"] = "User Registry";
+}
+
+<div class="row mb-5 align-items-end">
+    <div class="col-md-8">
+        <h1 class="display-6 fw-bold text-white mb-2">User Directory</h1>
+        <p class="text-muted opacity-75">Manage all registered library users</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-user-plus me-2"></i>Register New User
+        </a>
+    </div>
+</div>
+
+<div class="stacked-box-list">
+    @foreach (var item in Model)
+    {
+        <div class="stacked-box">
+            <div class="stacked-box-icon me-3">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            
+            <div class="stacked-box-col">
+                <div class="text-white fw-bold">@item.FullName</div>
+                <small class="text-muted">@@@item.Username</small>
+            </div>
+
+            <div class="stacked-box-col d-none d-md-block">
+                <div class="text-muted small"><i class="fas fa-envelope me-2"></i>@item.Email</div>
+            </div>
+
+            <div class="stacked-box-col text-center">
+                <span class="badge-tech @(item.Role == "Admin" ? "badge-primary" : "border-tech")">@item.Role</span>
+            </div>
+
+            <div class="stacked-box-actions">
+                <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-outline-primary btn-sm border-0">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-outline-primary btn-sm border-0">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-outline-danger btn-sm border-0">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+        </div>
+    }
+</div>

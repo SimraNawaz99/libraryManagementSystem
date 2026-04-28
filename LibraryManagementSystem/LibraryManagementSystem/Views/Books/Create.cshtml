@@ -1,0 +1,75 @@
+﻿@model LibraryManagementSystem.Models.Book
+
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="d-flex align-items-center mb-5 border-bottom border-tech pb-4">
+            <a asp-action="Index" class="btn btn-outline-primary border-0 me-3">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h2 class="text-white mb-0">Add New Book</h2>
+        </div>
+
+        <div class="tech-card border-top border-primary border-5">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="form-group">
+                            <label asp-for="Title" class="form-label text-accent fw-bold"><i class="fas fa-heading me-1"></i> Book Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="Enter book title" required />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="Author" class="form-label text-accent fw-bold"><i class="fas fa-user-edit me-1"></i> Author</label>
+                            <input asp-for="Author" class="form-control" placeholder="Author name" required />
+                            <span asp-validation-for="Author" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="Category" class="form-label text-accent fw-bold"><i class="fas fa-tags me-1"></i> Category</label>
+                            <input asp-for="Category" class="form-control" placeholder="e.g. Science, History" required />
+                            <span asp-validation-for="Category" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="Isbn" class="form-label text-accent fw-bold"><i class="fas fa-barcode me-1"></i> ISBN Number</label>
+                            <input asp-for="Isbn" class="form-control" placeholder="ISBN-13" />
+                            <span asp-validation-for="Isbn" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label asp-for="Quantity" class="form-label text-accent fw-bold"><i class="fas fa-layer-group me-1"></i> In Stock</label>
+                            <input asp-for="Quantity" type="number" class="form-control" placeholder="Initial quantity" required />
+                            <span asp-validation-for="Quantity" class="text-danger small"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 pt-4 border-top border-tech mt-4">
+                    <button type="submit" class="btn btn-primary flex-grow-1">
+                        Save Book
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-primary px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

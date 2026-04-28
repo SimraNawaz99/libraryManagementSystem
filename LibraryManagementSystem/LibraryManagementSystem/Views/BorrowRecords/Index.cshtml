@@ -1,0 +1,81 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.BorrowRecord>
+
+@{
+    ViewData["Title"] = "Circulation Management";
+}
+
+<div class="row mb-5 align-items-end">
+    <div class="col-md-8">
+        <h1 class="display-6 fw-bold text-white mb-2">Borrowing Records</h1>
+        <p class="text-muted opacity-75">Track book issues and returns</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus me-2"></i>Issue New Loan
+        </a>
+    </div>
+</div>
+<div class="stacked-box-list">
+    @foreach (var item in Model)
+    {
+        <div class="stacked-box">
+            <div class="stacked-box-icon me-3">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            
+            <div class="stacked-box-col">
+                <div class="text-white fw-bold">@item.Book?.Title</div>
+                <small class="text-muted">Borrowed by @item.User?.FullName</small>
+            </div>
+
+            <div class="stacked-box-col d-none d-md-block text-center">
+                <div class="text-muted small mb-1">Issue Date</div>
+                <div class="text-white small">@item.BorrowDate.ToString("yyyy.MM.dd")</div>
+            </div>
+
+            <div class="stacked-box-col d-none d-lg-block text-center">
+                <div class="text-muted small mb-1">Due Date</div>
+                <div class="@(item.IsReturned == true ? "text-muted" : (item.ReturnDate < DateTime.Now ? "text-danger fw-bold" : "text-white")) small">
+                    @(item.ReturnDate?.ToString("yyyy.MM.dd") ?? "N/A")
+                </div>
+            </div>
+
+            <div class="stacked-box-col text-center">
+                @if (item.IsReturned == true)
+                {
+                    <span class="badge-tech border-success text-success py-1 px-3">Returned</span>
+                }
+                else if (item.ReturnDate < DateTime.Now)
+                {
+                    <span class="badge-tech bg-danger bg-opacity-25 text-danger py-1 px-3 animate-pulse">Overdue</span>
+                }
+                else
+                {
+                    <span class="badge-tech border-warning text-warning py-1 px-3">Active</span>
+                }
+            </div>
+
+            <div class="stacked-box-actions">
+                <a asp-action="Edit" asp-route-id="@item.BorrowId" class="btn btn-outline-light btn-sm border-0" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.BorrowId" class="btn btn-outline-light btn-sm border-0" title="Details">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.BorrowId" class="btn btn-outline-danger btn-sm border-0" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <i class="fas fa-history fa-4x text-muted mb-3 opacity-25"></i>
+        <h4 class="text-muted">No records found</h4>
+        <p class="text-muted small">All borrowing history will appear here.</p>
+    </div>
+}
+</div>

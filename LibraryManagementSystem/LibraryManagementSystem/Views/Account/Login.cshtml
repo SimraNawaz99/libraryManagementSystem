@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="text-center mb-5">
+            <div class="bg-card p-4 d-inline-block border border-primary shadow-lg mb-4">
+                <i class="fas fa-terminal fa-3x text-primary animate-pulse"></i>
+            </div>
+            <h2 class="text-white">Sign In</h2>
+            <p class="text-muted small">Please enter your credentials to continue</p>
+        </div>
+        
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger border-0 rounded-0 shadow-sm mb-4">
+                <i class="fas fa-exclamation-circle me-2"></i>@ViewBag.Error
+            </div>
+        }
+
+        <div class="tech-card border-top border-primary border-5">
+            <form asp-action="Login" method="post">
+                <div class="form-group mb-4">
+                    <label class="text-primary small fw-bold">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter your username" required />
+                </div>
+                <div class="form-group mb-4">
+                    <label class="text-primary small fw-bold">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter your password" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login to System</button>
+            </form>
+
+            <div class="text-center mt-5 pt-3 border-top border-tech">
+                <p class="text-muted small">Don't have an account? <a asp-action="Signup" class="text-primary fw-bold ms-1">Create Account</a></p>
+            </div>
+        </div>
+    </div>
+</div>
